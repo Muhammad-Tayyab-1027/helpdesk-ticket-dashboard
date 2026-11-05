@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helpdesk Ticket Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Helpdesk Ticket Dashboard</h1>
+  <p class="note">Portfolio project using made-up tickets, 3 Aug to 31 Oct 2026. <a href="kb/README.md">Knowledge base</a></p>
+</header>
+
+<main>
+  <form class="filters" aria-label="Filter tickets">
+    <label>Category <select id="f-category"><option value="">All</option></select></label>
+    <label>Priority <select id="f-priority"><option value="">All</option></select></label>
+    <label>Department <select id="f-department"><option value="">All</option></select></label>
+    <label>Status
+      <select id="f-status">
+        <option value="">All</option>
+        <option>Open</option>
+        <option>Resolved</option>
+      </select>
+    </label>
+    <button type="button" id="reset">Clear filters</button>
+  </form>
+
+  <section class="tiles" aria-label="Headline figures">
+    <div class="tile"><span class="value" id="k-total"></span><span class="label">Tickets</span></div>
+    <div class="tile"><span class="value" id="k-open"></span><span class="label">Still open</span></div>
+    <div class="tile"><span class="value" id="k-sla"></span><span class="label">Resolved within target</span></div>
+    <div class="tile"><span class="value" id="k-median"></span><span class="label">Median time to resolve</span></div>
+  </section>
+
+  <section class="charts">
+    <figure>
+      <figcaption>Tickets by category</figcaption>
+      <div id="chart-category"></div>
+    </figure>
+    <figure>
+      <figcaption>Tickets opened per week</figcaption>
+      <div id="chart-week"></div>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Tickets breaching target or still open longest</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Ticket</th><th>Opened</th><th>Issue</th><th>Category</th><th>Priority</th><th>Department</th><th>Status</th><th class="num">Hours</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="note" id="table-note"></p>
+  </section>
+</main>
+<div id="tooltip" role="status" hidden></div>
+<script src="tickets.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
